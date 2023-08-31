@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
-  const { searchParams } = new URL(req.url);
-  let token = searchParams.get("token");
-  let city = searchParams.get("city");
-  return NextResponse.json({
-    Token: token,
-    City: city,
-  });
+export async function POST(req, res) {
+  const requestBody = await req.json();
+  let name = requestBody["name"];
+  let age = requestBody["age"];
+  let color = requestBody["color"];
+
+  return NextResponse.json(
+    { Name: name, Age: age, Color: color },
+    { status: 202 }
+  );
 }
