@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 
 export async function GET(req, res) {
-  const headerList = headers();
-  let apiKey = headerList.get("apiKey");
-
-  return NextResponse.json({ APIKey: apiKey });
+  const myCookie = req.cookies.get("myCookie");
+  //   const myCookie = req.cookies.get("myCookie")["name"];
+  //   const myCookie = req.cookies.get("myCookie")["value"];
+  return NextResponse.json({
+    Cookie: myCookie,
+  });
 }
