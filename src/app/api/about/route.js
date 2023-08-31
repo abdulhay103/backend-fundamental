@@ -1,6 +1,9 @@
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 export async function GET(req, res) {
-  return NextResponse.json({ msg: "This is ok!" });
+  const allHeaders = headers();
+  let user = allHeaders.get("user");
+  let password = allHeaders.get("password");
+  return NextResponse.json({ user: user, Password: password });
 }
